@@ -1,5 +1,5 @@
 import React from "react";
-import type { Item } from "../types/types";
+import type { Item } from "../../types/types";
 import { useEffect, useRef } from "react";
 
 interface ItemListProps {
