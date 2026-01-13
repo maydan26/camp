@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import type { Item } from "./types/types";
 import ItemList from "./components/ItemList.tsx";
-import { socket } from "./socket.ts";
+import { socket } from "./socket/socket.ts";
 import axios from "axios";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     };
 
     fetchList();
-    socket.emit("subscribe", "foo");
+    socket.emit("subscribe", "list-updates");
 
     socket.on("update", (data) => {
       setList((prevList) =>
@@ -29,7 +29,7 @@ function App() {
     });
 
     return () => {
-      socket.emit("unsubscribe", "foo");
+      socket.emit("unsubscribe", "list-updates");
       socket.off("update");
     };
   }, []);
@@ -39,7 +39,7 @@ function App() {
       <ul>
         {list.map((item) => (
           <li key={item.id}>
-            <ItemList data={item} />
+            <ItemList itemData={item} />
           </li>
         ))}
       </ul>

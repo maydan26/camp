@@ -1,24 +1,28 @@
-import type React from "react";
+import React from "react";
 import type { Item } from "../types/types";
 import { useEffect, useRef } from "react";
 
 interface ItemListProps {
-  data: Item;
+  itemData: Item;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ data }) => {
-  const renderCounter = useRef(0);
+const compareProps = (
+  oldProps: ItemListProps,
+  newProps: ItemListProps
+): boolean => {
+  return oldProps.itemData.name === newProps.itemData.name;
+};
 
-  useEffect(() => {
-    renderCounter.current++;
-  });
+const ItemList: React.FC<ItemListProps> = React.memo(({ itemData }) => {
+  const renderCounter = useRef(0);
+  renderCounter.current++;
   return (
     <>
-      <p>{`item name: ${data.name}`}</p>
-      <p>{`last update: ${data.lastUpdated || "-"}`}</p>
+      <p>{`item name: ${itemData.name}`}</p>
+      <p>{`last update: ${itemData.lastUpdated || "-"}`}</p>
       <p>{`Number of renders: ${renderCounter.current}`}</p>
     </>
   );
-};
+}, compareProps);
 
 export default ItemList;

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
-import startPublisher from "./publisher.js";
+import { startPublisher } from "./publisher.js";
 import { list } from "./data.js";
 
 const app = express();

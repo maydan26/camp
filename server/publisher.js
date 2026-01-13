@@ -1,17 +1,18 @@
 import { list } from "./data.js";
-export default function startPublisher(io, time) {
+
+export const startPublisher = (io, time) => {
   let counter = 0;
   let itemIndex = 0;
   setInterval(() => {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleString();
-    io.to("foo").emit("update", {
+    io.to("list-updates").emit("update", {
       id: list[itemIndex].id,
-      name: `${list[itemIndex].name} ${counter}`,
+      name: `${list[itemIndex].name} ~ ${counter}`,
       lastUpdated: formattedDate,
     });
-    console.log("published to foo ", counter);
+    console.log("publish num ", counter);
     itemIndex = (itemIndex + 1) % list.length;
     counter++;
   }, time);
-}
+};
