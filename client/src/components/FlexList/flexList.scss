@@ -1,0 +1,9 @@
+.flex-list {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    border: 1px solid black;
+    padding: 1em;
+  }
+}
