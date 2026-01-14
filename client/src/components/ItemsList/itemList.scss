@@ -1,0 +1,10 @@
+.item {
+  min-width: 300px;
+  transition: background-color 0.5s ease-in-out;
+}
+.item-highlighted {
+  background-color: brown;
+  color: darksalmon;
+  font-weight: 500;
+  transition: background-color 0.5s ease-in-out;
+}
